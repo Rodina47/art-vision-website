@@ -235,23 +235,26 @@
 
   
   /* ---------- 3D logo ---------- */
-  .stage{position:relative;width:100%;max-width:28rem;margin:0 auto;perspective:1000px;user-select:none}
-  .stage__inner{position:relative;transform-style:preserve-3d;transition:transform .3s var(--ease);will-change:transform;
-    animation:drift 9s ease-in-out infinite}
+  .stage{position:relative;width:100%;max-width:34rem;margin:0 auto;perspective:1250px;user-select:none}
+  .stage__inner{position:relative;transform-style:preserve-3d;transition:transform .45s var(--ease);will-change:transform;
+    animation:drift 7s ease-in-out infinite}
   .stage__inner.is-active{animation:none}
   @keyframes drift{
-    0%,100%{transform:rotateX(6deg) rotateY(-14deg) translateY(0)}
-    25%{transform:rotateX(-4deg) rotateY(-4deg) translateY(-10px)}
-    50%{transform:rotateX(-7deg) rotateY(14deg) translateY(0)}
-    75%{transform:rotateX(3deg) rotateY(4deg) translateY(10px)}
+    0%,100%{transform:rotateX(8deg) rotateY(-20deg) translateY(0) scale(1.02)}
+    25%{transform:rotateX(-7deg) rotateY(-8deg) translateY(-14px) scale(1.04)}
+    50%{transform:rotateX(-10deg) rotateY(20deg) translateY(0) scale(1.02)}
+    75%{transform:rotateX(6deg) rotateY(8deg) translateY(14px) scale(1.04)}
   }
   @media(prefers-reduced-motion:reduce){.stage__inner{animation:none}}
-  .stage__glow{position:absolute;inset:-4rem;border-radius:50%;background:var(--gradient-ember);
-    filter:blur(80px);opacity:.2;transition:opacity .5s;pointer-events:none;transform:translateZ(-160px)}
-  .stage:hover .stage__glow{opacity:.4}
+  .stage__glow{position:absolute;inset:-5rem;border-radius:50%;
+    background:radial-gradient(circle,rgba(232,99,44,.62) 0%,rgba(181,68,26,.3) 38%,transparent 72%);
+    filter:blur(48px);opacity:.38;transition:opacity .5s,transform .5s;pointer-events:none;transform:translateZ(-160px) scale(.88);
+    animation:glowBreath 4s ease-in-out infinite}
+  .stage:hover .stage__glow{opacity:.62;transform:translateZ(-160px) scale(1)}
+  @keyframes glowBreath{0%,100%{opacity:.3}50%{opacity:.52}}
   .stage img{display:block;width:100%}
   .stage .layer{position:absolute;inset:0;pointer-events:none;opacity:.9;filter:saturate(1.4)}
-  .stage .top{position:relative;filter:drop-shadow(0 24px 40px rgba(13,12,11,.55))}
+  .stage .top{position:relative;pointer-events:none;filter:drop-shadow(0 28px 42px rgba(13,12,11,.62)) drop-shadow(0 0 18px rgba(232,99,44,.24))}
 
   
   /* ---------- STATS ---------- */

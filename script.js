@@ -103,44 +103,6 @@ function nudgeProjects(dir){
 nextBtn.addEventListener('click', ()=> nudgeProjects(-1));
 prevBtn.addEventListener('click', ()=> nudgeProjects(1));
 
-// ---------- Before / After slider ----------
-const baWrap = document.getElementById('baSlider');
-const baClip = document.getElementById('baAfterClip');
-const baHandle = document.getElementById('baHandle');
-let dragging = false;
-
-function setSlider(clientX){
-  const rect = baWrap.getBoundingClientRect();
-  let pct = ((clientX - rect.left) / rect.width) * 100;
-  pct = Math.max(0, Math.min(100, pct));
-  baClip.style.clipPath = `inset(0 0 0 ${pct}%)`;
-  baHandle.style.left = pct + '%';
-}
-baWrap.addEventListener('mousedown', (e)=>{ dragging = true; setSlider(e.clientX); });
-window.addEventListener('mousemove', (e)=>{ if(dragging) setSlider(e.clientX); });
-window.addEventListener('mouseup', ()=> dragging=false);
-baWrap.addEventListener('touchstart', (e)=>{ dragging=true; setSlider(e.touches[0].clientX); });
-baWrap.addEventListener('touchmove', (e)=>{ if(dragging){ setSlider(e.touches[0].clientX); e.preventDefault(); } }, {passive:false});
-baWrap.addEventListener('touchend', ()=> dragging=false);
-
-// gentle auto demo sweep on first reveal
-const baObserver = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      let t=0;
-      const anim = setInterval(()=>{
-        t+=1;
-        const pct = 50 + Math.sin(t/12)*22;
-        baClip.style.clipPath = `inset(0 0 0 ${pct}%)`;
-        baHandle.style.left = pct+'%';
-        if(t>60){ clearInterval(anim); }
-      },16);
-      baObserver.unobserve(entry.target);
-    }
-  });
-},{threshold:0.5});
-baObserver.observe(baWrap);
-
 // ---------- Testimonials rotator (GSAP crossfade) ----------
 const testiCards = document.querySelectorAll('.testi-card');
 const testiDots = document.querySelectorAll('.testi-dots span');
@@ -232,7 +194,7 @@ if(contactForm && formStatus){
     const x = ((e.clientX - r.left) / r.width - .5) * 2;
     const y = ((e.clientY - r.top) / r.height - .5) * 2;
     inner.classList.add('is-active');
-    inner.style.transform = `rotateX(${-y*16}deg) rotateY(${x*22}deg) scale(1.04)`;
+    inner.style.transform = `rotateX(${-y*24}deg) rotateY(${x*32}deg) scale(1.06)`;
   });
   stage.addEventListener('pointerleave', () => {
     inner.style.transform = '';
