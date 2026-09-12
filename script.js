@@ -103,6 +103,30 @@ function nudgeProjects(dir){
 nextBtn.addEventListener('click', ()=> nudgeProjects(-1));
 prevBtn.addEventListener('click', ()=> nudgeProjects(1));
 
+// ---------- Materials selector ----------
+const materialCards = document.querySelectorAll('.material-card');
+const materialTitle = document.getElementById('materialTitle');
+const materialDescription = document.getElementById('materialDescription');
+const materialUse = document.getElementById('materialUse');
+const materials = [
+  ['Acrylic', 'Clean, polished and versatile. Acrylic gives signage a premium finish with the clarity and color impact your brand deserves.', 'Signage · Retail displays · Facades'],
+  ['PVC', 'Lightweight, practical and durable. PVC is a smart choice for crisp graphics, dimensional letters and fast-turnaround displays.', 'Indoor signs · Displays · Promotions'],
+  ['Aluminum', 'Strong, weather-resistant and refined. Aluminum creates a confident finish for signage that needs to perform outdoors.', 'Outdoor signs · Cladding · Directional systems'],
+  ['Vinyl', 'Flexible, colorful and made for impact. Vinyl brings campaigns, windows and vehicles to life with sharp visual communication.', 'Windows · Vehicles · Campaigns'],
+  ['Wood', 'Warm, tactile and distinctive. Wood adds character to retail environments, hospitality spaces and crafted brand moments.', 'Retail interiors · Events · Hospitality'],
+  ['LED / Lighting', 'Light turns visibility into an experience. We use LED solutions to make your brand impossible to miss, day or night.', 'Signage · Facades · Night branding']
+];
+materialCards.forEach((card, index)=>{
+  card.addEventListener('click', ()=>{
+    materialCards.forEach(item=>item.classList.remove('is-active'));
+    card.classList.add('is-active');
+    const [title, description, use] = materials[index];
+    materialTitle.textContent = title;
+    materialDescription.textContent = description;
+    materialUse.textContent = use;
+  });
+});
+
 // ---------- Testimonials rotator (GSAP crossfade) ----------
 const testiCards = document.querySelectorAll('.testi-card');
 const testiDots = document.querySelectorAll('.testi-dots span');
