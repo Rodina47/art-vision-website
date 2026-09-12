@@ -190,6 +190,38 @@ document.querySelector('.burger').addEventListener('click', ()=>{
   links.style.cssText += 'display:flex;position:fixed;top:78px;left:0;right:0;background:#0c0b0a;flex-direction:column;padding:24px;gap:20px;';
 });
 
+// ---------- Contact form (static-site mailto handoff) ----------
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+if(contactForm && formStatus){
+  contactForm.addEventListener('submit', (event)=>{
+    event.preventDefault();
+    if(!contactForm.checkValidity()){
+      contactForm.reportValidity();
+      return;
+    }
+
+    const data = new FormData(contactForm);
+    const subject = `Project enquiry from ${data.get('name')}`;
+    const body = [
+      `Name: ${data.get('name')}`,
+      `Email: ${data.get('email')}`,
+      `Company: ${data.get('company') || 'Not provided'}`,
+      `Project type: ${data.get('projectType')}`,
+      `Budget: ${data.get('budget') || 'Not provided'}`,
+      `Timeline: ${data.get('timeline') || 'Not provided'}`,
+      '',
+      'Project brief:',
+      data.get('message')
+    ].join('\n');
+
+    formStatus.textContent = 'Your email app is opening with your project brief ready to send.';
+    formStatus.classList.add('is-success');
+    contactForm.classList.add('is-submitted');
+    window.location.href = `mailto:info@artvision-egypt.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+}
+
 
 
   // Replace https://id-preview--46f5a01d-6b24-4bb2-b6ed-33ad45d18249.lovable.app/__l5e/assets-v1/378e6a66-2f39-4f84-9266-1415a01aa60f/art-vision-logo.png above with the path to your transparent PNG logo.

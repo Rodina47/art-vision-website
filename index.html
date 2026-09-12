@@ -33,10 +33,7 @@
             <li><a href="#contact">Contact Us</a></li>
           </ul>
         </nav>
-        <a
-          href="mailto:info@artvision-egypt.com?subject=Requesting%20a%20Quote&body=Hi%20Art%20Vision%20team%2C%0A%0AI%27d%20like%20a%20quote%20for%3A%0A-%20Project%20type%3A%20%0A-%20Budget%3A%20%0A-%20Timeline%3A%20%0A"
-          class="btn btn-outline-light"
-          style="padding: 12px 22px"
+        <a href="#contact" class="btn btn-outline-light" style="padding: 12px 22px"
           >work with us</a
         >
       </div>
@@ -562,9 +559,7 @@
           experience across advertising and marketing &mdash; helping us reach
           the top in a short period.
         </p>
-        <a
-          href="mailto:info@artvision-egypt.com?subject=Requesting%20a%20Quote&body=Hi%20Art%20Vision%20team%2C%0A%0AI%27d%20like%20a%20quote%20for%3A%0A-%20Project%20type%3A%20%0A-%20Budget%3A%20%0A-%20Timeline%3A%20%0A"
-          class="btn btn-outline-light"
+        <a href="#contact" class="btn btn-outline-light"
           >Work With Us
           <svg
             class="arrow"
@@ -579,7 +574,7 @@
         ></a>
       </div>
       <div class="about-img reveal">
-        <img src="imges/02-about-team.jpg" alt="Art Vision team celebrating a project win" />
+        <img src="imges/our values edited.jfif" alt="Art Vision team celebrating a project win" />
         <div class="about-badge">
           <!--<svg viewBox="0 0 40 40" fill="none">
             <path
@@ -599,7 +594,7 @@
     <!-- ============ VALUES ============ -->
     <section class="about" id="values">
       <div class="about-img reveal">
-        <img src="imges/03-values-lightbulb.jpg" alt="Lightbulb symbolizing Art Vision's creative values" />
+        <img src="imges/light bulb edited.jfif" alt="Lightbulb symbolizing Art Vision's creative values" />
       </div>
       <div class="about-copy reveal">
         <div class="eyebrow">We Believe In</div>
@@ -830,26 +825,77 @@
 
     <!-- ============ CTA ============ -->
     <section class="cta reveal" id="contact">
-      <div class="cta-copy">
+      <div class="cta-intro">
+        <div class="eyebrow">Start a conversation</div>
         <h2>Ready to make your brand unforgettable?</h2>
-        <p>Let's create something amazing together.</p>
-        <a
-          href="mailto:info@artvision-egypt.com?subject=Requesting%20a%20Quote&body=Hi%20Art%20Vision%20team%2C%0A%0AI%27d%20like%20a%20quote%20for%3A%0A-%20Project%20type%3A%20%0A-%20Budget%3A%20%0A-%20Timeline%3A%20%0A"
-          class="btn"
-          style="background: #0c0b0a; color: #fff"
-          >Get a Free Quote
-          <svg
-            class="arrow"
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-          >
-            <path d="M5 12h14M13 6l6 6-6 6" /></svg
-        ></a>
+        <p>Tell us what you are building and our team will get back to you within one business day.</p>
+        <div class="cta-contact-note">
+          <span class="cta-contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M4 4h16v16H4z" />
+              <path d="m4 6 8 7 8-7" />
+            </svg>
+          </span>
+          <span><strong>Prefer email?</strong><br /><a href="mailto:info@artvision-egypt.com">info@artvision-egypt.com</a></span>
+        </div>
       </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-heading">
+          <span>01 / Project details</span>
+          <small>* Required fields</small>
+        </div>
+        <div class="form-grid">
+          <label>
+            <span>Your name *</span>
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+          <label>
+            <span>Work email *</span>
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+          <label>
+            <span>Company</span>
+            <input type="text" name="company" autocomplete="organization" />
+          </label>
+          <label>
+            <span>Project type *</span>
+            <select name="projectType" required>
+              <option value="" disabled selected>Select a service</option>
+              <option>Branding &amp; signage</option>
+              <option>Retail &amp; booth setup</option>
+              <option>BTL production</option>
+              <option>Marketing campaign</option>
+              <option>Something else</option>
+            </select>
+          </label>
+          <label>
+            <span>Estimated budget</span>
+            <select name="budget">
+              <option value="" selected>Choose a range</option>
+              <option>Under EGP 50,000</option>
+              <option>EGP 50,000 ? 150,000</option>
+              <option>EGP 150,000 ? 300,000</option>
+              <option>EGP 300,000+</option>
+            </select>
+          </label>
+          <label>
+            <span>Target timeline</span>
+            <input type="text" name="timeline" placeholder="e.g. June 2026" />
+          </label>
+          <label class="form-full">
+            <span>How can we help? *</span>
+            <textarea name="message" rows="4" required placeholder="Give us a little context about your project..."></textarea>
+          </label>
+        </div>
+        <button class="btn form-submit" type="submit">
+          Send project brief
+          <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        <p class="form-privacy">Your details stay between you and Art Vision.</p>
+      </form>
       <div class="cta-graphic">
         <div class="roll"></div>
         <div class="roll-inner">
