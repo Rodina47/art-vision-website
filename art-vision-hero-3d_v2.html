@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Art Vision — 3D Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0d0c0b; --charcoal:#1b1a18; --panel:#252320;
+    --cream:#f3ece1; --brand:#e2622c; --brand-deep:#a8421a; --brand-glow:#f38a3f;
+    --hairline:rgba(255,255,255,.08);
+    --gradient-ember:linear-gradient(135deg,var(--brand-deep),var(--brand) 45%,var(--brand-glow));
+    --gradient-ink:linear-gradient(160deg,var(--ink),var(--charcoal) 60%,var(--panel));
+    --ease:cubic-bezier(.2,.8,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--cream);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+
+  .hero{position:relative;overflow:hidden;background:var(--gradient-ink);color:var(--cream);padding:9rem 0 6rem}
+  .hero__blob{position:absolute;right:-10rem;top:-10rem;width:34rem;height:34rem;border-radius:50%;
+    background:var(--gradient-ember);opacity:.25;filter:blur(80px);pointer-events:none}
+  .hero__grid{position:absolute;inset:0;opacity:.07;pointer-events:none;
+    background-image:linear-gradient(to right,var(--cream) 1px,transparent 1px),
+                     linear-gradient(to bottom,var(--cream) 1px,transparent 1px);
+    background-size:72px 72px}
+  .wrap{position:relative;max-width:1400px;margin:0 auto;padding:0 1.25rem;
+    display:grid;gap:3.5rem;align-items:center}
+  @media(min-width:1024px){ .wrap{grid-template-columns:1.05fr .95fr;padding:0 2.5rem} }
+
+  .eyebrow{display:flex;align-items:center;gap:.5rem;margin-bottom:.9rem;
+    font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.25em;color:var(--brand)}
+  .eyebrow i{display:inline-block;width:1rem;height:2px;background:var(--brand)}
+
+  h1{font-family:"Anton",Arial Narrow,sans-serif;font-weight:400;line-height:.93;letter-spacing:.02em;
+     text-transform:uppercase;font-size:clamp(2.8rem,7.5vw,5.6rem)}
+  h1 .line{display:block;overflow:hidden}
+  h1 .line span{display:block;animation:rise .95s var(--ease) both}
+  h1 .accent{color:var(--brand)}
+  @keyframes rise{from{transform:translateY(110%)}to{transform:translateY(0)}}
+
+  .lede{margin-top:1.75rem;max-width:36rem;font-size:15px;line-height:1.7;color:rgba(243,236,225,.7)}
+  .actions{margin-top:2.25rem;display:flex;flex-wrap:wrap;align-items:center;gap:1.25rem}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--brand);color:#fff;
+    padding:1rem 1.75rem;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    text-decoration:none;box-shadow:0 16px 36px -12px rgba(226,98,44,.55);transition:transform .3s var(--ease)}
+  .btn:hover{transform:translateY(-2px)}
+  .ghost{display:inline-flex;align-items:center;gap:.75rem;color:rgba(243,236,225,.85);
+    font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none}
+  .ghost em{display:grid;place-items:center;width:2.75rem;height:2.75rem;border-radius:50%;
+    border:1px solid rgba(243,236,225,.3);font-style:normal;transition:.3s}
+  .ghost:hover em{border-color:var(--brand);background:var(--brand)}
+  .scroll{margin-top:3.5rem;display:flex;align-items:center;gap:.75rem;font-size:11px;
+    letter-spacing:.3em;text-transform:uppercase;color:rgba(243,236,225,.4)}
+  .scroll i{width:2.5rem;height:1px;background:rgba(243,236,225,.3)}
+
+  /* ---------- 3D logo ---------- */
+  .stage{position:relative;width:100%;max-width:28rem;margin:0 auto;perspective:1000px;user-select:none}
+  .stage__inner{position:relative;transform-style:preserve-3d;transition:transform .3s var(--ease);will-change:transform;
+    animation:drift 9s ease-in-out infinite}
+  .stage__inner.is-active{animation:none}
+  @keyframes drift{
+    0%,100%{transform:rotateX(6deg) rotateY(-14deg) translateY(0)}
+    25%{transform:rotateX(-4deg) rotateY(-4deg) translateY(-10px)}
+    50%{transform:rotateX(-7deg) rotateY(14deg) translateY(0)}
+    75%{transform:rotateX(3deg) rotateY(4deg) translateY(10px)}
+  }
+  @media(prefers-reduced-motion:reduce){.stage__inner{animation:none}}
+  .stage__glow{position:absolute;inset:-4rem;border-radius:50%;background:var(--gradient-ember);
+    filter:blur(80px);opacity:.2;transition:opacity .5s;pointer-events:none;transform:translateZ(-160px)}
+  .stage:hover .stage__glow{opacity:.4}
+  .stage img{display:block;width:100%}
+  .stage .layer{position:absolute;inset:0;pointer-events:none;opacity:.9;filter:saturate(1.4)}
+  .stage .top{position:relative;filter:drop-shadow(0 24px 40px rgba(13,12,11,.55))}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="hero__blob"></div>
+  <div class="hero__grid"></div>
+
+  <div class="wrap">
+    <div>
+      <div class="eyebrow"><i></i>Advertising · Signage · Events</div>
+      <h1>
+        <span class="line"><span style="animation-delay:.12s">We make</span></span>
+        <span class="line"><span class="accent" style="animation-delay:.26s">Brands</span></span>
+        <span class="line"><span style="animation-delay:.40s">Impossible</span></span>
+        <span class="line"><span style="animation-delay:.54s">to miss.</span></span>
+      </h1>
+      <p class="lede">We create impactful signs, banners and brand experiences that get you noticed — from first sketch to final install.</p>
+      <div class="actions">
+        <a class="btn" href="#services">Explore Our Work →</a>
+        <a class="ghost" href="mailto:info@artvision-egypt.com"><em>▶</em>Start a Project</a>
+      </div>
+      <div class="scroll"><i></i>Scroll Down</div>
+    </div>
+
+    <!-- 3D wordmark -->
+    <div class="stage" id="stage">
+      <div class="stage__inner" id="stageInner">
+        <div class="stage__glow"></div>
+        <img class="layer" src="https://id-preview--46f5a01d-6b24-4bb2-b6ed-33ad45d18249.lovable.app/__l5e/assets-v1/378e6a66-2f39-4f84-9266-1415a01aa60f/art-vision-logo.png" alt="" style="transform:translateZ(-30px);filter:brightness(.18)">
+        <img class="layer" src="https://id-preview--46f5a01d-6b24-4bb2-b6ed-33ad45d18249.lovable.app/__l5e/assets-v1/378e6a66-2f39-4f84-9266-1415a01aa60f/art-vision-logo.png" alt="" style="transform:translateZ(-24px);filter:brightness(.26)">
+        <img class="layer" src="https://id-preview--46f5a01d-6b24-4bb2-b6ed-33ad45d18249.lovable.app/__l5e/assets-v1/378e6a66-2f39-4f84-9266-1415a01aa60f/art-vision-logo.png" alt="" style="transform:translateZ(-18px);filter:brightness(.34)">
+        <img class="layer" src="https://id-preview--46f5a01d-6b24-4bb2-b6ed-33ad45d18249.lovable.app/__l5e/assets-v1/378e6a66-2f39-4f84-9266-1415a01aa60f/art-vision-logo.png" alt="" style="transform:translateZ(-12px);filter:brightness(.42)">
+        <img class="layer" src="https://id-preview--46f5a01d-6b24-4bb2-b6ed-33ad45d18249.lovable.app/__l5e/assets-v1/378e6a66-2f39-4f84-9266-1415a01aa60f/art-vision-logo.png" alt="" style="transform:translateZ(-6px);filter:brightness(.5)">
+        <img class="top" src="https://id-preview--46f5a01d-6b24-4bb2-b6ed-33ad45d18249.lovable.app/__l5e/assets-v1/378e6a66-2f39-4f84-9266-1415a01aa60f/art-vision-logo.png" alt="Art Vision logo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Replace https://id-preview--46f5a01d-6b24-4bb2-b6ed-33ad45d18249.lovable.app/__l5e/assets-v1/378e6a66-2f39-4f84-9266-1415a01aa60f/art-vision-logo.png above with the path to your transparent PNG logo.
+  const stage = document.getElementById('stage');
+  const inner = document.getElementById('stageInner');
+  stage.addEventListener('pointermove', (e) => {
+    const r = stage.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width - .5) * 2;
+    const y = ((e.clientY - r.top) / r.height - .5) * 2;
+    inner.classList.add('is-active');
+    inner.style.transform = `rotateX(${-y*16}deg) rotateY(${x*22}deg) scale(1.04)`;
+  });
+  stage.addEventListener('pointerleave', () => {
+    inner.style.transform = '';
+    inner.classList.remove('is-active'); // resume the idle drift
+  });
+</script>
+</body>
+</html>
