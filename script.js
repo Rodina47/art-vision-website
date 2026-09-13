@@ -90,10 +90,15 @@ function getProjCardStep(){
 
 function nudgeProjects(dir){
   const step = getProjCardStep();
-  trackWrap.scrollBy({ left: dir < 0 ? step : -step, behavior:'smooth' });
+  projectsPaused = true;
+  if(dir < 0 && trackWrap.scrollLeft <= 0){
+    trackWrap.scrollLeft = track.scrollWidth / 2;
+  }
+  trackWrap.scrollBy({ left: dir * step, behavior:'smooth' });
+  window.setTimeout(()=>{ projectsPaused = reduceMotion; }, 900);
 }
-nextBtn.addEventListener('click', ()=> nudgeProjects(-1));
-prevBtn.addEventListener('click', ()=> nudgeProjects(1));
+nextBtn.addEventListener('click', (event)=>{ event.preventDefault(); nudgeProjects(1); });
+prevBtn.addEventListener('click', (event)=>{ event.preventDefault(); nudgeProjects(-1); });
 
 // Keep the project strip moving while preserving manual touch and mouse scrolling.
 let projectsPaused = reduceMotion;
@@ -105,7 +110,7 @@ function normalizeProjectScroll(){
   const halfway = track.scrollWidth / 2;
   if(trackWrap.scrollLeft >= halfway){
     trackWrap.scrollLeft -= halfway;
-  } else if(trackWrap.scrollLeft <= 0){
+  } else if(trackWrap.scrollLeft < 0){
     trackWrap.scrollLeft += halfway;
   }
 }
@@ -127,7 +132,11 @@ trackWrap.addEventListener('pointerdown', ()=>{ projectsPaused = true; });
 trackWrap.addEventListener('pointerup', ()=>{ projectsPaused = reduceMotion; });
 trackWrap.addEventListener('pointercancel', ()=>{ projectsPaused = reduceMotion; });
 trackWrap.addEventListener('wheel', ()=>{ projectsPaused = true; });
-trackWrap.addEventListener('touchend', ()=>{ projectsPaused = reduceMotion; }, {passive:true});
+trackWrap.addEventListener('touchstart', ()=>{ projectsPaused = true; }, {passive:true});
+trackWrap.addEventListener('touchmove', ()=>{ projectsPaused = true; }, {passive:true});
+trackWrap.addEventListener('touchend', ()=>{
+  window.setTimeout(()=>{ projectsPaused = reduceMotion; }, 1200);
+}, {passive:true});
 if(!reduceMotion) projectsFrame = requestAnimationFrame(moveProjects);
 
 // ---------- Materials selector ----------

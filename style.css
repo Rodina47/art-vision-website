@@ -619,7 +619,7 @@
   /* ---------- FEATURED PROJECTS (dark) ---------- */
   .projects{background:var(--black); color:#fff;}
   .projects .services-head p{color:var(--gray);}
-  .proj-nav{display:flex; gap:12px;}
+  .proj-nav{display:flex; justify-content:center; gap:12px; margin-top:28px;}
   .proj-nav button{
     width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25); background:none; color:#fff;
     display:flex;align-items:center;justify-content:center; cursor:pointer; transition:background .3s, border-color .3s;
@@ -631,6 +631,7 @@
     overflow-y:hidden;
     padding-bottom:2px;
     cursor:grab;
+    touch-action:pan-x;
     overscroll-behavior-x:contain;
     -webkit-overflow-scrolling:touch;
     scrollbar-width:none;
@@ -639,6 +640,12 @@
   .proj-track-wrap:active{cursor:grabbing;}
   .proj-track{
     display:flex; gap:22px; width:max-content; padding-right:8vw;
+  }
+  @media(max-width:600px){
+    .proj-track-wrap{margin-inline:-6vw; padding-inline:6vw; cursor:default;}
+    .proj-track{gap:16px; padding-right:6vw;}
+    .proj-nav{margin-top:22px;}
+    .proj-nav button{width:42px;height:42px;}
   }
   .proj-card{
     flex:0 0 260px; width:260px;
