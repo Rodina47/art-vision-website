@@ -626,9 +626,19 @@
   }
   .proj-nav button:hover{background:var(--orange); border-color:var(--orange);}
   .proj-nav svg{width:16px;height:16px;}
-  .proj-track-wrap{overflow:hidden;}
+  .proj-track-wrap{
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding-bottom:2px;
+    cursor:grab;
+    overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .proj-track-wrap::-webkit-scrollbar{display:none;}
+  .proj-track-wrap:active{cursor:grabbing;}
   .proj-track{
-    display:flex; gap:22px; width:max-content;
+    display:flex; gap:22px; width:max-content; padding-right:8vw;
   }
   .proj-card{
     flex:0 0 260px; width:260px;

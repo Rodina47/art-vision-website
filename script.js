@@ -88,20 +88,47 @@ function getProjCardStep(){
   return card.getBoundingClientRect().width + gap;
 }
 
-let projAutoTween = null;
-if(!reduceMotion){
-  // xPercent:-50 drifts through exactly one full duplicated set, then repeats seamlessly
-  projAutoTween = gsap.to(track, { xPercent:-50, ease:'none', duration:48, repeat:-1 });
-  trackWrap.addEventListener('mouseenter', ()=> projAutoTween.pause());
-  trackWrap.addEventListener('mouseleave', ()=> projAutoTween.play());
-}
-
 function nudgeProjects(dir){
   const step = getProjCardStep();
-  gsap.to(track, { x: `${dir<0 ? '-=' : '+='}${step}`, duration:.55, ease:'power2.out' });
+  trackWrap.scrollBy({ left: dir < 0 ? step : -step, behavior:'smooth' });
 }
 nextBtn.addEventListener('click', ()=> nudgeProjects(-1));
 prevBtn.addEventListener('click', ()=> nudgeProjects(1));
+
+// Keep the project strip moving while preserving manual touch and mouse scrolling.
+let projectsPaused = reduceMotion;
+let projectsFrame = null;
+let projectsLastTime = 0;
+const projectsSpeed = 0.035;
+
+function normalizeProjectScroll(){
+  const halfway = track.scrollWidth / 2;
+  if(trackWrap.scrollLeft >= halfway){
+    trackWrap.scrollLeft -= halfway;
+  } else if(trackWrap.scrollLeft <= 0){
+    trackWrap.scrollLeft += halfway;
+  }
+}
+
+function moveProjects(timestamp){
+  if(!projectsLastTime) projectsLastTime = timestamp;
+  const elapsed = timestamp - projectsLastTime;
+  projectsLastTime = timestamp;
+  if(!projectsPaused && elapsed < 100){
+    trackWrap.scrollLeft += elapsed * projectsSpeed;
+    normalizeProjectScroll();
+  }
+  projectsFrame = requestAnimationFrame(moveProjects);
+}
+
+trackWrap.addEventListener('mouseenter', ()=>{ projectsPaused = true; });
+trackWrap.addEventListener('mouseleave', ()=>{ projectsPaused = reduceMotion; });
+trackWrap.addEventListener('pointerdown', ()=>{ projectsPaused = true; });
+trackWrap.addEventListener('pointerup', ()=>{ projectsPaused = reduceMotion; });
+trackWrap.addEventListener('pointercancel', ()=>{ projectsPaused = reduceMotion; });
+trackWrap.addEventListener('wheel', ()=>{ projectsPaused = true; });
+trackWrap.addEventListener('touchend', ()=>{ projectsPaused = reduceMotion; }, {passive:true});
+if(!reduceMotion) projectsFrame = requestAnimationFrame(moveProjects);
 
 // ---------- Materials selector ----------
 const materialCards = document.querySelectorAll('.material-card');
