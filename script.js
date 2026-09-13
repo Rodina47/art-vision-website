@@ -64,8 +64,12 @@ gsap.utils.toArray('.stat-num').forEach(el=>{
 });
 
 // ---------- Process line fill ----------
-gsap.to('#processFill', {
-  width:'100%', ease:'power2.inOut',
+const processFill = document.getElementById('processFill');
+const processFillAnimation = window.matchMedia('(max-width: 520px)').matches
+  ? { height:'100%', width:'100%' }
+  : { width:'100%' };
+gsap.to(processFill, {
+  ...processFillAnimation, ease:'power2.inOut',
   scrollTrigger:{ trigger:'#processSteps', start:'top 75%', once:true, scrub:false }
 });
 gsap.utils.toArray('.step').forEach((step,i)=>{
