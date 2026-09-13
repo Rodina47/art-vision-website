@@ -555,32 +555,32 @@
 }
 
 /* ---------- MATERIALS ---------- */
-.materials-section{background:#120a05;color:#fff;padding:110px 7vw 100px;position:relative;overflow:hidden;}
+.materials-section{background:#24130b;color:#fff;padding:82px 7vw 76px;position:relative;overflow:hidden;}
 .materials-section::before{content:"";position:absolute;width:620px;height:620px;border-radius:50%;right:-280px;top:-320px;background:radial-gradient(circle,rgba(232,99,44,.22),transparent 68%);pointer-events:none;}
-.materials-head{max-width:1160px;margin:0 auto 52px;display:flex;align-items:end;justify-content:space-between;gap:50px;position:relative;z-index:1;}
+.materials-head{max-width:1160px;margin:0 auto 38px;display:flex;align-items:end;justify-content:space-between;gap:50px;position:relative;z-index:1;}
 .materials-head h2{font-size:clamp(38px,5.4vw,74px);max-width:720px;color:#f5f1e9;}
-.materials-head p{max-width:365px;color:#aa9385;font-size:14px;line-height:1.7;margin-bottom:5px;}
+.materials-head p{max-width:365px;color:#d0aa93;font-size:14px;line-height:1.7;margin-bottom:5px;}
 .materials-showcase{max-width:1160px;margin:0 auto;position:relative;z-index:1;}
-.materials-grid{display:grid;grid-template-columns:repeat(6,1fr);height:330px;border:1px solid rgba(255,255,255,.12);}
-.material-card{appearance:none;border:0;border-right:1px solid rgba(255,255,255,.12);padding:22px 20px;background:#17120f;color:#fff;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;text-align:left;cursor:pointer;position:relative;overflow:hidden;transition:flex .5s cubic-bezier(.2,.8,.2,1),background .4s ease,transform .4s ease;}
+.materials-grid{display:grid;grid-template-columns:repeat(6,1fr);height:330px;border:1px solid rgba(255,255,255,.2);}
+.material-card{appearance:none;border:0;border-right:1px solid rgba(255,255,255,.18);padding:22px 20px;background:#2b1a12;color:#fff;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;text-align:left;cursor:pointer;position:relative;overflow:hidden;transition:flex .5s cubic-bezier(.2,.8,.2,1),background .4s ease,transform .4s ease;}
 .material-card:last-child{border-right:0;}
 .material-card::before{content:"";position:absolute;inset:0;opacity:.65;transition:opacity .4s ease,transform .6s ease;}
-.material-card:nth-child(1)::before{background:linear-gradient(135deg,#252321,#080706);}
-.material-card:nth-child(2)::before{background:repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 7px),#161311;}
-.material-card:nth-child(3)::before{background:repeating-linear-gradient(110deg,rgba(255,255,255,.18) 0 1px,transparent 1px 5px),linear-gradient(135deg,#5e5e5e,#151515);}
-.material-card:nth-child(4)::before{background:radial-gradient(circle at 50% 40%,rgba(232,99,44,.55),transparent 28%),linear-gradient(#21150f,#080706);}
-.material-card:nth-child(5)::before{background:repeating-linear-gradient(90deg,rgba(232,99,44,.15) 0 2px,transparent 2px 11px),#17100c;}
-.material-card:nth-child(6)::before{background:radial-gradient(circle at 50% 43%,rgba(255,125,54,.72),transparent 27%),linear-gradient(#21150f,#080706);}
+.material-card:nth-child(1)::before{background:linear-gradient(135deg,rgba(30,22,18,.2),rgba(8,7,6,.7)),url("imges/Acrylic-Panel.jpg") center/cover;}
+.material-card:nth-child(2)::before{background:linear-gradient(180deg,rgba(43,29,22,.15),rgba(12,9,7,.72)),url("imges/Chemical-Resistance-Good-Water-Resistance-PVC-Waterproof-Membrane-Basement-Waterproofing.webp") center/cover;}
+.material-card:nth-child(3)::before{background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(12,12,12,.62)),url("imges/Aluminium-ein-Metall-und-viele-Moeglichkeiten-1024x600.jpg") center/cover;}
+.material-card:nth-child(4)::before{background:radial-gradient(circle at 50% 40%,rgba(255,137,78,.65),transparent 28%),linear-gradient(rgba(45,24,14,.18),rgba(10,7,5,.68)),url("imges/Vinyl-1.png") center/cover;}
+.material-card:nth-child(5)::before{background:linear-gradient(90deg,rgba(82,45,25,.2),rgba(15,9,6,.7)),url("imges/Wood-Texture-3.jpg") center/cover;}
+.material-card:nth-child(6)::before{background:radial-gradient(circle at 50% 43%,rgba(255,155,92,.78),transparent 27%),linear-gradient(rgba(55,29,17,.1),rgba(12,7,4,.68)),url("imges/lighting.jpg") center/cover;}
 .material-card:hover::before,.material-card.is-active::before{opacity:.95;transform:scale(1.08);}
 .material-card > *{position:relative;z-index:1;}
-.material-number{font:11px 'Inter',sans-serif;color:#9a8170;letter-spacing:1.5px;}
+.material-number{font:11px 'Inter',sans-serif;color:#e0b79d;letter-spacing:1.5px;}
 .material-name{font:26px 'Anton',sans-serif;line-height:.9;text-transform:uppercase;letter-spacing:.3px;text-shadow:0 3px 15px rgba(0,0,0,.55);}
 .material-arrow{width:32px;height:32px;border:1px solid rgba(255,255,255,.35);border-radius:50%;display:grid;place-items:center;font-size:18px;color:#fff;transition:background .3s ease,border-color .3s ease,transform .3s ease;}
 .material-card:hover .material-arrow,.material-card.is-active .material-arrow{background:var(--orange);border-color:var(--orange);transform:rotate(8deg);}
 .material-detail{display:grid;grid-template-columns:115px minmax(190px,.75fr) minmax(260px,1.5fr) minmax(180px,.8fr);align-items:center;gap:25px;padding:36px 0 0;color:#fff;}
 .material-detail-label{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--orange);}
 .material-detail h3{font-size:38px;color:#fff;}
-.material-detail p{font-size:14px;line-height:1.7;color:#aa9385;margin:0;}
+.material-detail p{font-size:14px;line-height:1.7;color:#d0aa93;margin:0;}
 .material-detail-meta{border-left:1px solid rgba(255,255,255,.15);padding-left:24px;display:flex;flex-direction:column;gap:8px;}
 .material-detail-meta span{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#8e7465;}
 .material-detail-meta strong{font-size:13px;line-height:1.5;color:#f5f1e9;}
@@ -844,10 +844,10 @@
   }
 
   /* ---------- FOOTER ---------- */
-  footer{background:var(--black); color:#c9c3b8; padding:48px 6vw 20px;}
-  .footer-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr 1.15fr; gap:28px; padding-bottom:34px; border-bottom:1px solid var(--line);}
+  footer{background:var(--black); color:#c9c3b8; padding:32px 6vw 14px;}
+  .footer-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr 1.15fr; gap:22px; padding-bottom:22px; border-bottom:1px solid var(--line);}
   @media(max-width:800px){ .footer-grid{grid-template-columns:1fr 1fr;} }
-  .footer-brand p{color:var(--gray); font-size:12.5px; line-height:1.6; margin:12px 0 16px; max-width:280px;}
+  .footer-brand p{color:var(--gray); font-size:11.5px; line-height:1.5; margin:9px 0 12px; max-width:240px;}
   .footer-social{display:flex; gap:10px;}
   .footer-social a{
     width:36px;height:36px;border-radius:50%;border:1px solid var(--line); display:flex;align-items:center;justify-content:center;
@@ -855,14 +855,14 @@
   }
   .footer-social a:hover{background:var(--orange); border-color:var(--orange);}
   .footer-social svg{width:14px;height:14px;}
-  footer h5{font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#fff; margin-bottom:14px;}
+  footer h5{font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#fff; margin-bottom:10px;}
   footer ul{list-style:none;}
-  footer li{margin-bottom:8px;}
-  footer a{font-size:12.5px; color:var(--gray); transition:color .25s ease, padding-left .25s ease;}
+  footer li{margin-bottom:5px;}
+  footer a{font-size:11.5px; color:var(--gray); transition:color .25s ease, padding-left .25s ease;}
   footer a:hover{color:var(--orange); padding-left:4px;}
-  .footer-contact li{display:flex; gap:10px; align-items:flex-start; font-size:12px; color:var(--gray);}
+  .footer-contact li{display:flex; gap:8px; align-items:flex-start; font-size:11px; color:var(--gray);}
   .footer-contact svg{width:15px;height:15px; color:var(--orange); flex-shrink:0; margin-top:2px;}
-  .footer-bottom{display:flex; justify-content:space-between; padding-top:16px; font-size:11px; color:#5c564d; flex-wrap:wrap; gap:10px;}
+  .footer-bottom{display:flex; justify-content:space-between; padding-top:11px; font-size:10px; color:#5c564d; flex-wrap:wrap; gap:8px;}
   .footer-bottom a{color:#5c564d; margin-left:18px;}
   .footer-bottom a:hover{color:var(--orange);}
 
