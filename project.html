@@ -1136,6 +1136,30 @@
       grid-template-columns:repeat(4,1fr);
       gap:12px;
     }
+    .store-gallery-scroll-controls{
+      display:none;
+    }
+    .gallery-scroll-button{
+      width:38px;
+      height:38px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,247,237,.35);
+      background:rgba(24,16,12,.72);
+      color:#fff7ed;
+      font-size:22px;
+      line-height:1;
+      cursor:pointer;
+      transition:transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .gallery-scroll-button:hover,
+    .gallery-scroll-button:focus-visible{
+      transform:translateY(-1px);
+      border-color:rgba(255,247,237,.8);
+      background:rgba(44,29,19,.82);
+      outline:none;
+    }
     .store-image{
       appearance:none;
       width:100%;
@@ -1228,10 +1252,35 @@
       .store-galleries{grid-template-columns:1fr;gap:36px;}
       .store-gallery-heading{display:block;margin-bottom:10px;}
       .store-gallery-heading p{font-size:10px;}
-      .store-gallery-grid{grid-template-columns:1fr 1fr;gap:8px;}
-      .store-image{min-height:130px;padding:4px;}
+      .store-gallery-grid{
+        display:flex;
+        gap:10px;
+        overflow-x:auto;
+        scroll-snap-type:x proximity;
+        padding:4px 2px 8px;
+        -ms-overflow-style:none;
+        scrollbar-width:none;
+      }
+      .store-gallery-grid::-webkit-scrollbar{display:none;}
+      .store-gallery-scroll-controls{
+        display:flex;
+        justify-content:flex-end;
+        gap:8px;
+        margin-top:12px;
+      }
+      .gallery-scroll-button{
+        width:36px;
+        height:36px;
+        font-size:20px;
+      }
+      .store-image{
+        flex:0 0 78%;
+        min-height:130px;
+        padding:4px;
+        scroll-snap-align:start;
+      }
       .store-image-frame-count{top:9px;left:9px;font-size:8px;padding:4px 6px;}
-      .store-image:first-child{grid-column:span 2;grid-row:span 1;}
+      .store-image:first-child{grid-column:auto;grid-row:auto;}
       .store-image img{min-height:120px;}
     }
 
@@ -1899,16 +1948,18 @@ if(project.locations){
  project.locations.forEach((location)=>{
    galleryChunks.push({
      name:location.name,
-     images:location.images
+     detail:location.detail || `${project.service} — ${project.category}`,
+     images:location.images || []
    });
  });
 } else {
  galleryChunks.push({
    name:project.location,
    detail:`${project.service} — ${project.category}`,
-   images:project.images
+   images:project.images || []
  });
 }
+const allGalleryImages = galleryChunks.flatMap((chunk) => chunk.images || []);
 document.getElementById("locationCount").textContent =
  String(galleryChunks.length).padStart(2, "0");
 
@@ -1919,14 +1970,14 @@ galleryChunks.forEach((location, galleryIndex)=>{
  const images = location.images;
  const imageOffset = galleryImageOffset;
  galleryImageOffset += images.length;
- const visibleImages = images.slice(0, 2);
+ const visibleImages = window.innerWidth <= 700 ? images : images.slice(0, 2);
 
  store.innerHTML = `
    <div class="store-gallery-heading">
      <h2>${location.name}</h2>
      <p>${location.detail}</p>
     </div>
-    <div class="store-gallery-grid">
+    <div class="store-gallery-grid" aria-label="${location.name} images">
       ${visibleImages.map((image, imageIndex)=>`
         <button class="store-image" type="button" data-image-index="${imageOffset + imageIndex}" aria-label="Open ${brandTitle} store image">
           ${imageIndex === 0 && images.length > 2
@@ -1936,7 +1987,23 @@ galleryChunks.forEach((location, galleryIndex)=>{
         </button>
       `).join("")}
     </div>
+    <div class="store-gallery-scroll-controls" aria-label="${location.name} gallery controls">
+      <button class="gallery-scroll-button prev" type="button" aria-label="Scroll previous ${location.name} images">&#8249;</button>
+      <button class="gallery-scroll-button next" type="button" aria-label="Scroll next ${location.name} images">&#8250;</button>
+    </div>
   `;
+
+  const galleryGrid = store.querySelector(".store-gallery-grid");
+  const prevButton = store.querySelector(".gallery-scroll-button.prev");
+  const nextButton = store.querySelector(".gallery-scroll-button.next");
+  const scrollAmount = Math.max(galleryGrid.clientWidth * 0.72, 220);
+  prevButton.addEventListener("click", () => {
+    galleryGrid.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  });
+  nextButton.addEventListener("click", () => {
+    galleryGrid.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  });
+
   storeGalleries.appendChild(store);
 });
 
@@ -1946,10 +2013,11 @@ const lightboxCounter = document.getElementById("lightboxCounter");
 let activeImageIndex = 0;
 
 function showLightboxImage(index){
-  activeImageIndex = (index + project.images.length) % project.images.length;
-  lightboxImage.src = project.images[activeImageIndex];
+  const totalImages = allGalleryImages.length || 1;
+  activeImageIndex = ((index % totalImages) + totalImages) % totalImages;
+  lightboxImage.src = allGalleryImages[activeImageIndex];
   lightboxImage.alt = `${project.title} project image ${activeImageIndex + 1}`;
-  lightboxCounter.textContent = `${activeImageIndex + 1} / ${project.images.length}`;
+  lightboxCounter.textContent = `${activeImageIndex + 1} / ${totalImages}`;
 }
 
 function openLightbox(index){
