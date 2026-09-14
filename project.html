@@ -1,0 +1,1994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Project | Art Vision</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    :root{
+      --black:#140a00;
+      --charcoal:#161412;
+      --panel:#1e1b18;
+
+      --cream:#f2ece1;
+      --cream-dim:#bdb4a8;
+
+      --orange:#e8632c;
+      --orange-deep:#b5441a;
+      --orange-glow:#ff8a4d;
+
+      --line:rgba(242,236,225,.14);
+      --line-soft:rgba(242,236,225,.08);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:var(--black);
+      color:var(--cream);
+      font-family:"Inter",sans-serif;
+      overflow-x:hidden;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+
+    /* =========================================
+       BACKGROUND
+    ========================================= */
+
+    body::before{
+      content:"";
+      position:fixed;
+      width:600px;
+      height:600px;
+      top:-250px;
+      right:-200px;
+
+      background:var(--orange);
+      opacity:.06;
+      filter:blur(140px);
+
+      pointer-events:none;
+      z-index:-1;
+    }
+
+
+    /* =========================================
+       NAV
+    ========================================= */
+
+    #siteHeader{
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1000;
+      width:100%;
+      height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 5vw;
+      background:rgba(20,10,0,.88);
+      backdrop-filter:blur(12px);
+    }
+    #siteHeader .logo{
+      display:flex;
+      align-items:center;
+      flex-shrink:0;
+    }
+    #siteHeader .logo img{
+      width:100px;
+      height:auto;
+    }
+    #siteHeader .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+    }
+    #siteHeader nav ul{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      list-style:none;
+    }
+    #siteHeader nav a{
+      color:#e9e4da;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.4px;
+      text-transform:uppercase;
+    }
+    #siteHeader .btn{
+      display:inline-flex;
+      align-items:center;
+      text-transform:uppercase;
+    }
+    .project-footer .footer-brand .logo img{
+      width:100px;
+    }
+    .project-footer .footer-social a{
+      width:auto;
+      height:auto;
+      border:0;
+      border-radius:0;
+      font-size:11px;
+      color:var(--cream-dim);
+    }
+    .project-footer .footer-social a:hover{
+      background:none;
+      color:var(--orange);
+    }
+
+    .back-link{
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      font-size:11px;
+      letter-spacing:1.8px;
+      text-transform:uppercase;
+
+      color:var(--cream-dim);
+
+      transition:.3s ease;
+    }
+
+    .back-link:hover{
+      color:var(--orange);
+    }
+
+    .back-arrow{
+      width:34px;
+      height:34px;
+
+      border:1px solid var(--line);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      transition:.3s ease;
+    }
+
+    .back-link:hover .back-arrow{
+      border-color:var(--orange);
+      transform:translateX(-4px);
+    }
+
+
+    /* =========================================
+       MAIN
+    ========================================= */
+
+    .project-page{
+      width:min(1380px,88%);
+      margin:auto;
+      padding:150px 0 90px;
+    }
+
+
+    /* =========================================
+       PROJECT TITLE
+    ========================================= */
+
+    .project-heading{
+      border-bottom:1px solid var(--line);
+
+      padding-bottom:38px;
+      margin-bottom:42px;
+    }
+
+    .project-tag{
+      display:inline-flex;
+
+      padding:9px 15px;
+
+      border:1px solid rgba(232,99,44,.65);
+
+      color:var(--orange);
+
+      font-size:10px;
+      letter-spacing:2.5px;
+      text-transform:uppercase;
+
+      margin-bottom:22px;
+    }
+
+    .project-title{
+      font-family:"Anton",sans-serif;
+
+      font-size:clamp(48px,7vw,92px);
+      line-height:.9;
+
+      text-transform:uppercase;
+      letter-spacing:-1px;
+    }
+
+    .project-title span{
+      color:var(--orange);
+    }
+
+
+    /* =========================================
+       PROJECT CONTENT
+    ========================================= */
+
+    .project-layout{
+
+      display:grid;
+
+      grid-template-columns:280px 1fr;
+
+      gap:32px;
+
+      align-items:start;
+    }
+
+
+    /* =========================================
+       INFORMATION BOX
+    ========================================= */
+
+    .info-box{
+
+      border:1px solid var(--line);
+
+      background:rgba(255,255,255,.025);
+
+      position:sticky;
+      top:25px;
+    }
+
+    .info-head{
+
+      padding:20px 22px;
+
+      border-bottom:1px solid var(--line);
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .info-head span:first-child{
+
+      font-size:10px;
+      letter-spacing:2px;
+
+      color:var(--orange);
+
+      text-transform:uppercase;
+    }
+
+    .info-number{
+      font-size:10px;
+      color:var(--cream-dim);
+    }
+
+
+    .info-item{
+
+      padding:21px 22px;
+
+      border-bottom:1px solid var(--line-soft);
+    }
+
+    .info-item:last-child{
+      border-bottom:none;
+    }
+
+    .info-label{
+
+      font-size:9px;
+
+      letter-spacing:2px;
+
+      color:#8e877e;
+
+      text-transform:uppercase;
+
+      margin-bottom:8px;
+    }
+
+    .info-value{
+
+      font-size:14px;
+
+      color:var(--cream);
+
+      line-height:1.5;
+    }
+
+
+    /* =========================================
+       GALLERY
+    ========================================= */
+
+    .gallery-section{
+      min-width:0;
+    }
+
+    .section-label{
+
+      display:flex;
+
+      align-items:center;
+
+      gap:15px;
+
+      margin-bottom:18px;
+
+      font-size:10px;
+
+      letter-spacing:2.5px;
+
+      color:var(--orange);
+
+      text-transform:uppercase;
+    }
+
+    .section-label::after{
+
+      content:"";
+
+      height:1px;
+
+      flex:1;
+
+      background:var(--line);
+    }
+
+
+    .gallery{
+
+      display:grid;
+
+      grid-template-columns:repeat(3,1fr);
+
+      gap:12px;
+    }
+
+
+    /* EVERY IMAGE HAS ITS OWN FRAME */
+
+    .gallery-item{
+
+      border:1px solid var(--line);
+
+      background:rgba(255,255,255,.025);
+
+      padding:7px;
+
+      overflow:hidden;
+
+      position:relative;
+    }
+
+    .gallery-item::after{
+
+      content:"";
+
+      position:absolute;
+
+      inset:7px;
+
+      border:1px solid rgba(255,255,255,.06);
+
+      pointer-events:none;
+    }
+
+    .gallery-item img{
+
+      display:block;
+
+      width:100%;
+
+      height:210px;
+
+      object-fit:cover;
+
+      transition:transform .7s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .gallery-item:hover img{
+
+      transform:scale(1.045);
+    }
+
+    .gallery-item img{
+      cursor:zoom-in;
+    }
+
+    .gallery-lightbox{
+      position:fixed;
+      inset:0;
+      z-index:2000;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:40px 76px;
+      background:rgba(17,9,5,.92);
+      backdrop-filter:blur(10px);
+    }
+    .gallery-lightbox.is-open{display:flex;}
+    .lightbox-image{
+      display:block;
+      max-width:min(1100px,90vw);
+      max-height:84vh;
+      width:auto;
+      height:auto;
+      object-fit:contain;
+      box-shadow:0 24px 70px rgba(0,0,0,.45);
+    }
+    .lightbox-close,
+    .lightbox-control{
+      position:absolute;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff7ed;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,226,198,.28);
+      cursor:pointer;
+      transition:background .25s ease, border-color .25s ease, transform .25s ease;
+    }
+    .lightbox-close:hover,
+    .lightbox-control:hover{
+      background:var(--orange);
+      border-color:var(--orange);
+    }
+    .lightbox-close{
+      top:24px;
+      right:28px;
+      width:42px;
+      height:42px;
+      font-size:25px;
+      line-height:1;
+    }
+    .lightbox-control{
+      top:50%;
+      width:48px;
+      height:48px;
+      font-size:30px;
+      transform:translateY(-50%);
+    }
+    .lightbox-control.prev{left:24px;}
+    .lightbox-control.next{right:24px;}
+    .lightbox-counter{
+      position:absolute;
+      left:50%;
+      bottom:22px;
+      transform:translateX(-50%);
+      color:#f2dfcf;
+      font-size:11px;
+      letter-spacing:1.5px;
+    }
+
+
+    /* BIG IMAGE */
+
+    .gallery-item.large{
+
+      grid-column:span 2;
+    }
+
+    .gallery-item.large img{
+
+      height:290px;
+    }
+
+
+    /* =========================================
+       PROJECT DESCRIPTION
+    ========================================= */
+
+    .project-description{
+
+      margin-top:35px;
+
+      padding:28px;
+
+      border:1px solid var(--line);
+
+      background:rgba(255,255,255,.018);
+    }
+
+    .description-label{
+
+      font-size:9px;
+
+      letter-spacing:2px;
+
+      color:var(--orange);
+
+      text-transform:uppercase;
+
+      margin-bottom:14px;
+    }
+
+    .project-description p{
+
+      color:var(--cream-dim);
+
+      font-size:14px;
+
+      line-height:1.9;
+
+      max-width:800px;
+    }
+
+
+    /* =========================================
+       MATERIALS
+    ========================================= */
+
+    .materials-section{
+
+      margin-top:85px;
+
+      border-top:1px solid var(--line);
+
+      padding-top:42px;
+    }
+
+    .materials-header{
+
+      display:flex;
+
+      justify-content:space-between;
+
+      align-items:end;
+
+      gap:30px;
+
+      margin-bottom:28px;
+    }
+
+    .materials-title{
+
+      font-family:"Anton",sans-serif;
+
+      font-size:clamp(34px,4vw,56px);
+
+      text-transform:uppercase;
+
+      line-height:.9;
+    }
+
+    .materials-title span{
+      color:var(--orange);
+    }
+
+    .materials-intro{
+
+      color:var(--cream-dim);
+
+      font-size:12px;
+
+      line-height:1.7;
+
+      max-width:360px;
+    }
+
+
+    .materials-grid{
+
+      display:grid;
+
+      grid-template-columns:repeat(3,1fr);
+
+      gap:12px;
+    }
+
+
+    .material-card{
+
+      border:1px solid var(--line);
+
+      background:rgba(255,255,255,.02);
+
+      min-height:230px;
+
+      padding:24px;
+
+      position:relative;
+
+      transition:.35s ease;
+    }
+
+    .material-card:hover{
+
+      border-color:rgba(232,99,44,.55);
+
+      transform:translateY(-5px);
+
+      background:rgba(232,99,44,.035);
+    }
+
+
+    .material-number{
+
+      font-size:10px;
+
+      color:var(--orange);
+
+      letter-spacing:1px;
+
+      margin-bottom:45px;
+    }
+
+    .material-name{
+
+      font-family:"Anton",sans-serif;
+
+      font-size:30px;
+
+      text-transform:uppercase;
+
+      margin-bottom:14px;
+    }
+
+    .material-use{
+
+      font-size:11px;
+
+      color:var(--cream-dim);
+
+      line-height:1.7;
+    }
+
+    .material-use strong{
+
+      color:var(--cream);
+
+      font-weight:500;
+    }
+
+
+    .project-heading,
+    .project-description,
+    .material-card,
+    .info-box,
+    .gallery-item{
+      box-shadow:0 18px 40px rgba(0,0,0,.12);
+    }
+
+    .project-description,
+    .material-card{
+      background:rgba(255,205,157,.07);
+    }
+
+    .materials-section{
+      margin-top:68px;
+      padding-top:34px;
+    }
+
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+
+    @media(max-width:900px){
+
+      .project-page{
+        width:92%;
+        padding-top:50px;
+      }
+
+      .project-layout{
+
+        grid-template-columns:1fr;
+
+      }
+
+      .info-box{
+
+        position:static;
+
+        display:grid;
+
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .info-head{
+
+        grid-column:1/-1;
+      }
+
+      .info-item{
+
+        border-right:1px solid var(--line-soft);
+      }
+
+      .gallery{
+
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .gallery-item.large{
+
+        grid-column:span 2;
+      }
+
+      .materials-grid{
+
+        grid-template-columns:1fr 1fr;
+      }
+
+    }
+
+
+    @media(max-width:600px){
+
+      .project-page{
+        width:92%;
+        padding:118px 0 60px;
+      }
+
+      .project-title{
+        font-size:48px;
+      }
+
+      .info-box{
+
+        display:block;
+      }
+
+      .info-item{
+
+        border-right:none;
+      }
+
+      .gallery{
+
+        grid-template-columns:1fr;
+      }
+
+      .gallery-item.large{
+
+        grid-column:span 1;
+      }
+
+      .gallery-item img,
+      .gallery-item.large img{
+
+        height:220px;
+      }
+
+      .materials-header{
+
+        display:block;
+      }
+
+      .materials-intro{
+
+        margin-top:20px;
+      }
+
+      .materials-grid{
+
+        grid-template-columns:1fr;
+      }
+
+    }
+
+    @media(max-width:900px){
+      #siteHeader{
+        height:70px;
+        padding:0 5vw;
+      }
+      #siteHeader .nav-links nav ul{
+        display:none;
+        position:absolute;
+        top:72px;
+        right:5vw;
+        flex-direction:column;
+        gap:16px;
+        min-width:190px;
+        padding:18px;
+        background:rgba(20,10,0,.96);
+        border:1px solid var(--line);
+      }
+      #siteHeader .burger{
+        display:flex;
+        width:28px;
+        height:24px;
+        padding:0;
+        justify-content:center;
+        position:relative;
+        z-index:2;
+      }
+      #siteHeader .burger span{
+        display:block;
+        width:24px;
+        height:2px;
+        background:#fff7ed;
+      }
+      #siteHeader .nav-links .btn{display:none;}
+    }
+
+    /* Project page visual refinements */
+    body{
+      background:#261912;
+      color:#fff7ed;
+    }
+    body::before{
+      background:#ff9a62;
+      opacity:.1;
+    }
+    #siteHeader{
+      background:rgba(38,25,18,.92);
+      border:1px solid rgba(255,226,198,.2);
+      border-top-color:rgba(255,226,198,.08);
+    }
+    .project-heading{
+      padding:16px 0 26px;
+      margin-bottom:32px;
+      border-bottom-color:rgba(255,226,198,.2);
+    }
+    .project-tag{display:none;}
+    .project-title{
+      font-family:"Inter",sans-serif;
+      font-size:clamp(36px,5vw,64px);
+      font-weight:600;
+      letter-spacing:-1.5px;
+      line-height:1;
+      color:#fff7ed;
+    }
+    .project-title span{
+      color:#ffb27f;
+      text-shadow:0 5px 0 rgba(95,38,18,.62), 0 9px 22px rgba(255,139,82,.34);
+    }
+    .info-box{
+      background:rgba(83,55,39,.72);
+      border-color:rgba(255,226,198,.24);
+      box-shadow:0 18px 40px rgba(13,7,3,.18);
+    }
+    .info-head{
+      padding:17px 20px;
+      background:rgba(255,203,165,.08);
+      border-bottom-color:rgba(255,226,198,.2);
+    }
+    .info-head span:first-child,
+    .section-label,
+    .description-label{color:#ffae7d;}
+    .info-item{
+      padding:17px 20px;
+      border-bottom-color:rgba(255,226,198,.14);
+    }
+    .info-label{
+      color:#d8bba4;
+      font-size:10px;
+    }
+    .info-value{
+      color:#fff7ed;
+      font-size:15px;
+      font-weight:600;
+    }
+    .project-description{
+      margin-top:28px;
+      padding:22px 24px;
+      background:rgba(83,55,39,.58);
+      border-color:rgba(255,226,198,.22);
+    }
+    .project-description p{
+      color:#f2dfcf;
+      font-size:14px;
+      line-height:1.75;
+    }
+    .materials-section{
+      margin-top:28px;
+      padding-top:0;
+      border-top:0;
+      background:transparent;
+    }
+    .materials-header{
+      display:block;
+      margin-bottom:12px;
+    }
+    .materials-header .section-label{
+      margin-bottom:0;
+      font-size:10px;
+    }
+    .materials-title{
+      display:none;
+    }
+    .materials-intro{
+      display:none;
+    }
+    .materials-grid{
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      background:transparent;
+    }
+    .material-entry{
+      min-width:0;
+    }
+    .material-card{
+      min-height:170px;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      overflow:hidden;
+      position:relative;
+      background-color:#593522;
+      border-color:rgba(255,226,198,.28);
+      box-shadow:none;
+    }
+    .material-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      opacity:.32;
+      background-image:repeating-linear-gradient(115deg,rgba(255,214,177,.32) 0 1px,transparent 1px 9px),radial-gradient(circle at 75% 20%,rgba(255,176,117,.6),transparent 42%);
+      pointer-events:none;
+    }
+    .material-card > *{
+      position:relative;
+      z-index:1;
+    }
+    .material-entry:nth-child(2) .material-card{
+      background-color:#3e4a4b;
+    }
+    .material-entry:nth-child(2) .material-card::before{
+      background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.28) 0 1px,transparent 1px 7px),linear-gradient(135deg,transparent 30%,rgba(255,255,255,.25));
+    }
+    .material-entry:nth-child(3) .material-card{
+      background-color:#5a5146;
+    }
+    .material-entry:nth-child(3) .material-card::before{
+      background-image:radial-gradient(circle,rgba(255,255,255,.3) 0 1px,transparent 1.5px),linear-gradient(135deg,rgba(255,188,125,.35),transparent 55%);
+      background-size:9px 9px,100% 100%;
+    }
+    .material-number{margin-bottom:0;color:#ffe0c5;}
+    .material-name{
+      font-family:"Anton",sans-serif;
+      color:#fff8f1;
+      font-size:22px;
+      font-weight:400;
+      letter-spacing:.3px;
+      text-shadow:0 2px 12px rgba(0,0,0,.32);
+    }
+    .material-use{
+      margin:10px 2px 0;
+      color:#d8bba4;
+      font-size:11px;
+      line-height:1.55;
+    }
+    .material-use strong{
+      display:block;
+      color:#ffae7d;
+      font-size:9px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+    .materials-section .material-use{
+      background:transparent;
+    }
+    .material-card:hover{
+      transform:translateY(-2px);
+      background:rgba(255,154,98,.12);
+    }
+    .project-footer{
+      background:#1d120d;
+      border-top:1px solid rgba(255,226,198,.14);
+    }
+    .project-footer .footer-brand p,
+    .project-footer a,
+    .project-footer .footer-contact li{color:#cdb29d;}
+    .project-footer h5{color:#fff0e3;}
+
+    @media(max-width:600px){
+      .project-page{padding-top:108px;}
+      .project-heading{
+        padding:10px 0 18px;
+        margin-bottom:22px;
+      }
+      .project-title{
+        font-size:32px;
+        letter-spacing:-.4px;
+      }
+      .info-box{
+        background:rgba(83,55,39,.42);
+      }
+      .info-head{
+        padding:14px 16px;
+      }
+      .info-item{
+        padding:14px 16px;
+      }
+      .info-label{
+        margin-bottom:6px;
+        font-size:9px;
+      }
+      .info-value{
+        font-size:14px;
+      }
+      .materials-grid{grid-template-columns:1fr 1fr;gap:14px;}
+      .material-card{min-height:145px;padding:14px;}
+      .material-name{font-size:19px;}
+      .gallery-lightbox{padding:48px 18px 62px;}
+      .lightbox-image{max-width:94vw;max-height:76vh;}
+      .lightbox-close{top:16px;right:16px;width:38px;height:38px;}
+      .lightbox-control{width:38px;height:38px;font-size:24px;}
+      .lightbox-control.prev{left:10px;}
+      .lightbox-control.next{right:10px;}
+    }
+
+    /* Brand project layout */
+    .project-page > .project-heading,
+    .project-page > .project-layout,
+    .project-page > .materials-section{
+      display:none;
+    }
+    .brand-project-page{
+      width:min(1420px,92%);
+      padding-top:140px;
+    }
+    .brand-hero{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      padding:18px 0 34px;
+      border-bottom:1px solid rgba(255,226,198,.2);
+    }
+    .brand-mark{
+      width:76px;
+      height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+      border:1px solid rgba(255,247,237,.38);
+      color:#fff7ed;
+      font-family:"Anton",sans-serif;
+      font-size:26px;
+      letter-spacing:1px;
+      background:rgba(255,178,127,.08);
+    }
+    .brand-hero h1{
+      font-family:"Inter",sans-serif;
+      font-size:clamp(38px,6vw,78px);
+      font-weight:600;
+      letter-spacing:-2px;
+      line-height:1;
+      color:#fff7ed;
+    }
+    .brand-hero p{
+      margin-top:10px;
+      color:#d8bba4;
+      font-size:12px;
+      letter-spacing:.4px;
+    }
+    .location-counter{
+      margin-left:auto;
+      min-width:112px;
+      padding-left:22px;
+      border-left:1px solid rgba(255,226,198,.24);
+      text-align:right;
+    }
+    .location-counter strong{
+      display:block;
+      color:#fff7ed;
+      font-family:"Anton",sans-serif;
+      font-size:38px;
+      font-weight:400;
+      line-height:.9;
+    }
+    .location-counter span{
+      display:block;
+      margin-top:7px;
+      color:#d8c8bb;
+      font-size:9px;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+    }
+    .store-galleries{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:48px 24px;
+      padding:36px 0 20px;
+    }
+    .store-gallery{
+      min-width:0;
+    }
+    .store-gallery-heading{
+      display:block;
+      margin-bottom:16px;
+    }
+    .store-gallery-heading h2{
+      font-family:"Inter",sans-serif;
+      color:#fff7ed;
+      font-size:clamp(21px,3vw,32px);
+      font-weight:600;
+      letter-spacing:-.6px;
+    }
+    .store-gallery-heading p{
+      margin-top:7px;
+      color:#d8c8bb;
+      font-size:11px;
+      line-height:1.5;
+    }
+    .store-gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+    }
+    .store-image{
+      appearance:none;
+      width:100%;
+      color:inherit;
+      min-height:210px;
+      padding:6px;
+      border:1px solid rgba(255,226,198,.2);
+      background:rgba(83,55,39,.18);
+      cursor:zoom-in;
+      transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+      position:relative;
+    }
+    .store-image-frame-count{
+      position:absolute;
+      top:14px;
+      left:14px;
+      z-index:2;
+      padding:5px 8px;
+      color:#fff7ed;
+      background:rgba(25,15,10,.76);
+      border:1px solid rgba(255,247,237,.28);
+      font-size:9px;
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+      pointer-events:none;
+    }
+    .store-image::after{
+      content:"Open photos  ↗";
+      position:absolute;
+      right:12px;
+      bottom:12px;
+      padding:6px 9px;
+      color:#fff7ed;
+      background:rgba(25,15,10,.78);
+      border:1px solid rgba(255,247,237,.34);
+      font-size:9px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      opacity:0;
+      transform:translateY(5px);
+      transition:opacity .3s ease, transform .3s ease;
+      pointer-events:none;
+    }
+    .store-image:first-child{
+      grid-column:span 2;
+      grid-row:span 2;
+    }
+    .store-gallery-heading h2::first-letter{
+      color:#fff7ed;
+    }
+    .store-image img{
+      width:100%;
+      height:100%;
+      min-height:198px;
+      display:block;
+      object-fit:cover;
+      transition:transform .45s ease, filter .45s ease;
+    }
+    .store-image:hover img{
+      transform:scale(1.035);
+      filter:saturate(1.1);
+    }
+    .store-image:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,247,237,.7);
+      box-shadow:0 14px 28px rgba(8,4,2,.32);
+    }
+    .store-image:hover::after,
+    .store-image:focus-visible::after{
+      opacity:1;
+      transform:translateY(0);
+    }
+    .store-image:focus-visible{
+      outline:2px solid #fff7ed;
+      outline-offset:4px;
+    }
+    @media(max-width:700px){
+      .brand-project-page{padding-top:105px;}
+      .brand-hero{gap:14px;padding-bottom:24px;}
+      .brand-mark{width:58px;height:58px;font-size:20px;}
+      .brand-hero h1{font-size:34px;letter-spacing:-1px;}
+      .brand-hero p{font-size:10px;}
+      .location-counter{
+        min-width:78px;
+        padding-left:12px;
+      }
+      .location-counter strong{font-size:28px;}
+      .location-counter span{font-size:8px;letter-spacing:1px;}
+      .store-galleries{padding-top:26px;}
+      .store-galleries{grid-template-columns:1fr;gap:36px;}
+      .store-gallery-heading{display:block;margin-bottom:10px;}
+      .store-gallery-heading p{font-size:10px;}
+      .store-gallery-grid{grid-template-columns:1fr 1fr;gap:8px;}
+      .store-image{min-height:130px;padding:4px;}
+      .store-image-frame-count{top:9px;left:9px;font-size:8px;padding:4px 6px;}
+      .store-image:first-child{grid-column:span 2;grid-row:span 1;}
+      .store-image img{min-height:120px;}
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVIGATION
+========================================= -->
+
+<header id="siteHeader">
+  <a href="index.html" class="logo" aria-label="Art Vision home">
+    <span class="logo-mark">
+      <img src="imges/ChatGPT Image Aug 30, 2026, 01_00_51 PM.png" alt="Art Vision logo">
+    </span>
+  </a>
+  <div class="nav-links">
+    <nav>
+      <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#materials">Materials</a></li>
+        <li><a href="index.html#portfolio">Portfolio</a></li>
+        <li><a href="index.html#process">Process</a></li>
+        <li><a href="index.html#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    <a href="index.html#contact" class="btn btn-outline-light" style="padding:12px 22px">Work With Us</a>
+  </div>
+  <button class="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+
+
+<main class="project-page brand-project-page">
+
+  <section class="brand-hero">
+    <div class="brand-mark" id="brandMark" aria-hidden="true">AV</div>
+    <div>
+      <h1 id="brandProjectTitle">Brand Project</h1>
+      <p id="brandProjectMeta">Retail environments · Art Vision</p>
+    </div>
+    <div class="location-counter" aria-label="Number of locations">
+      <strong id="locationCount">0</strong>
+      <span>Locations</span>
+    </div>
+  </section>
+
+  <section class="store-galleries" id="storeGalleries" aria-label="Brand store galleries"></section>
+
+
+</main>
+
+<div class="gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Project image viewer">
+  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close image viewer">&times;</button>
+  <button class="lightbox-control prev" id="lightboxPrev" type="button" aria-label="Previous image">&#8249;</button>
+  <img class="lightbox-image" id="lightboxImage" alt="">
+  <button class="lightbox-control next" id="lightboxNext" type="button" aria-label="Next image">&#8250;</button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<footer class="project-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo" aria-label="Art Vision home">
+        <span class="logo-mark">
+          <img src="imges/ChatGPT Image Aug 30, 2026, 01_00_51 PM.png" alt="Art Vision logo">
+        </span>
+      </a>
+      <p>We create impactful signs, banners and brand experiences that get you noticed.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+      </div>
+    </div>
+    <div>
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contact Us</h5>
+      <ul class="footer-contact">
+        <li><span>+20 111 0186 186</span></li>
+        <li><span>info@artvision-egypt.com</span></li>
+        <li><span>Cairo, Egypt</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Art Vision. All Rights Reserved.</span>
+    <span><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a></span>
+  </div>
+</footer>
+
+<script>
+  const projectBurger = document.querySelector("#siteHeader .burger");
+  const projectNav = document.querySelector("#siteHeader nav ul");
+  projectBurger.addEventListener("click", () => {
+    projectNav.style.display = projectNav.style.display === "flex" ? "none" : "flex";
+  });
+</script>
+
+<script>
+
+
+/* =========================================
+   PROJECT DATA
+========================================= */
+
+const projects = {
+
+  lancome: {
+
+    number:"01",
+
+    title:"Lancôme",
+
+    client:"Lancôme",
+
+    location:"Almaza, Cairo",
+
+    service:"Full setup- stand and gondola (cfc)",
+
+    year:"2026",
+
+    category:"",
+
+    description:
+      "A premium retail concept designed to translate the brand identity into a refined physical customer experience.",
+
+    images:[
+      "imges/projects_hq/Lancome/Lancome_1.jpg",
+      "imges/projects_hq/Lancome/Lancome_2.jpg",
+      "imges/projects_hq/Lancome/Lancome_3.jpg",
+      "imges/projects_hq/Lancome/Lancome_4.jpg",
+      "imges/projects_hq/Lancome/Lancome_5.jpg",
+      "imges/projects_hq/Lancome/Lancome_6.jpg",
+      "imges/projects_hq/Lancome/Lancome_7.jpg",
+      "imges/projects_hq/Lancome/Lancome_8.jpg"
+    ],
+
+    materials:[
+
+      {
+        name:"Acrylic",
+        use:"Used for clean dimensional branding elements and premium visual finishes."
+      },
+
+      {
+        name:"LED",
+        use:"Used to create illuminated elements and stronger brand visibility."
+      },
+
+      {
+        name:"Vinyl",
+        use:"Used for precise graphic applications across branded surfaces."
+      }
+
+    ],
+
+    next:"Nike",
+    nextId:"nike"
+
+  },
+
+
+  nike: {
+
+    number:"02",
+
+    title:"Nike",
+
+    client:"Nike",
+
+    location:"Almaza",
+
+    service:"Full setup",
+
+    year:"2026",
+
+    category:"",
+
+    description:
+      "A physical brand experience focused on creating a strong retail presence while maintaining the visual language of the brand.",
+
+    images:[
+      "imges/projects_hq/Nike/Nike_1.jpg",
+      "imges/projects_hq/Nike/Nike_2.jpg",
+      "imges/projects_hq/Nike/Nike_3.jpg",
+      "imges/projects_hq/Nike/Nike_4.jpg",
+      "imges/projects_hq/Nike/Nike_5.jpg"
+    ],
+
+    materials:[
+
+      {
+        name:"Acrylic",
+        use:"Used for dimensional lettering and clean branded elements."
+      },
+
+      {
+        name:"Aluminum",
+        use:"Used where durability and structural strength were required."
+      },
+
+      {
+        name:"LED",
+        use:"Used for illuminated branding and increased visibility."
+      }
+
+    ],
+
+    next:"Birkenstock",
+    nextId:"birkenstock"
+
+  },
+
+
+  birkenstock: {
+
+    number:"03",
+
+    title:"Birkenstock",
+
+    client:"Birkenstock",
+
+    location:"District 5",
+
+    service:"Full setup",
+
+    year:"2026",
+
+    category:"Retail Branding",
+
+    description:
+      "A retail environment developed around a clean and recognizable physical brand presence.",
+
+    images:[
+      "imges/projects_hq/Birkenstock/Birkenstock_1.jpg",
+      "imges/projects_hq/Birkenstock/Birkenstock_2.jpg",
+      "imges/projects_hq/Birkenstock/Birkenstock_3.jpg",
+      "imges/projects_hq/Birkenstock/Birkenstock_4.jpg"
+    ],
+
+    materials:[
+
+      {
+        name:"Wood",
+        use:"Used to introduce a warm physical texture within the retail environment."
+      },
+
+      {
+        name:"Acrylic",
+        use:"Used for branded dimensional elements and clean finishes."
+      },
+
+      {
+        name:"Vinyl",
+        use:"Used for graphic applications and surface branding."
+      }
+
+    ],
+
+    next:"GURU",
+    nextId:"guru"
+
+  },
+
+
+  guru: {
+
+    number:"04",
+
+    title:"GURU",
+
+    client:"GURU",
+
+    location:"Cairo, Egypt",
+
+    service:"Brand Activation",
+
+    year:"2026",
+
+    category:"BTL Production",
+
+    description:
+      "A physical activation created to give the brand a clear and engaging presence within its environment.",
+
+    images:[
+      "imges/projects_hq/Guru/Guru_1.jpg",
+      "imges/projects_hq/Guru/Guru_2.jpg",
+      "imges/projects_hq/Guru/Guru_3.jpg",
+      "imges/projects_hq/Guru/Guru_4.jpg",
+      "imges/projects_hq/Guru/Guru_5.jpg"
+    ],
+
+    materials:[
+
+      {
+        name:"PVC",
+        use:"Used for lightweight branded structures and indoor applications."
+      },
+
+      {
+        name:"Acrylic",
+        use:"Used for dimensional brand details."
+      },
+
+      {
+        name:"Vinyl",
+        use:"Used for graphic applications across surfaces."
+      }
+
+    ],
+
+    next:"YSL",
+    nextId:"ysl"
+
+  },
+
+
+  ysl: {
+
+    number:"05",
+
+    title:"Yves Saint Laurent",
+
+    client:"Yves Saint Laurent",
+
+    location:"Cairo, Egypt",
+
+    service:"Stand & Gondola",
+
+    year:"2026",
+
+    category:"Retail Display",
+
+    description:
+      "A refined retail display combining brand presence, product visibility and physical execution.",
+
+    images:[
+      "imges/projects_hq/YSL/YSL_1.jpg",
+      "imges/projects_hq/YSL/YSL_2.jpg",
+      "imges/projects_hq/YSL/YSL_3.jpg"
+    ],
+
+    materials:[
+
+      {
+        name:"Acrylic",
+        use:"Used for premium dimensional display elements."
+      },
+
+      {
+        name:"Aluminum",
+        use:"Used for durable structural components."
+      },
+
+      {
+        name:"LED",
+        use:"Used for illuminated brand visibility."
+      }
+
+    ],
+
+    next:"L'Oréal Paris",
+    nextId:"loreal"
+
+  },
+
+
+  loreal: {
+
+    number:"06",
+
+    title:"L'Oréal Paris",
+
+    client:"L'Oréal Paris",
+
+    location:"Cairo, Egypt",
+
+    service:"Retail Stand",
+
+    year:"2026",
+
+    category:"Retail Display",
+
+    description:
+      "A retail stand designed to create a strong branded presence while keeping the product experience clear and accessible.",
+
+    images:[
+      "imges/projects_hq/LOreal/LOreal_1.jpg",
+      "imges/projects_hq/LOreal/LOreal_2.jpg",
+      "imges/projects_hq/LOreal/LOreal_3.jpg"
+    ],
+
+    materials:[
+
+      {
+        name:"Acrylic",
+        use:"Used for clean product and branding displays."
+      },
+
+      {
+        name:"PVC",
+        use:"Used for lightweight internal branded structures."
+      },
+
+      {
+        name:"LED",
+        use:"Used to highlight key branded areas."
+      }
+
+    ],
+
+    next:"Kérastase",
+    nextId:"kerastase"
+
+  },
+
+
+  kerastase: {
+
+    number:"07",
+
+    title:"Kérastase",
+
+    client:"Kérastase",
+
+    location:"Cairo, Egypt",
+
+    service:"Salon Setup",
+
+    year:"2026",
+
+    category:"Brand Environment",
+
+    description:
+      "A branded salon environment designed around a polished and consistent physical identity.",
+
+    images:[
+      "imges/projects_hq/Kerastase/Kerastase_1.jpg",
+      "imges/projects_hq/Kerastase/Kerastase_2.jpg"
+    ],
+
+    materials:[
+
+      {
+        name:"Acrylic",
+        use:"Used for dimensional branding and clean premium details."
+      },
+
+      {
+        name:"Wood",
+        use:"Used to add warmth and physical texture."
+      },
+
+      {
+        name:"LED",
+        use:"Used for illuminated brand elements."
+      }
+
+    ],
+
+    next:"BOSS",
+    nextId:"boss"
+
+  },
+
+
+  boss: {
+
+    number:"08",
+
+    title:"BOSS",
+
+    client:"BOSS",
+
+    location:"Cairo, Egypt",
+
+    service:"Retail Stand",
+
+    year:"2026",
+
+    category:"Retail Display",
+
+    description:
+      "A retail stand developed to deliver a strong, structured and recognizable brand environment.",
+
+    images:[
+      "imges/projects_hq/Boss/Boss_1.jpg",
+      "imges/projects_hq/Boss/Boss_2.jpg"
+    ],
+
+    locations:[
+      {
+        name:"Full setup (Almaza)",
+        detail:"Stand and gondola (CFC)",
+        images:[
+          "imges/projects_hq/Boss/Boss_1.jpg",
+          "imges/projects_hq/Boss/Boss_2.jpg"
+        ]
+      },
+      {
+        name:"Shopping Bags",
+        detail:"Retail packaging — branded shopping bag collection",
+        images:[
+          "imges/projects_hq/ShoppingBags/ShoppingBags_1.jpg",
+          "imges/projects_hq/ShoppingBags/ShoppingBags_2.jpg",
+          "imges/projects_hq/ShoppingBags/ShoppingBags_3.jpg",
+          "imges/projects_hq/ShoppingBags/ShoppingBags_4.jpg",
+          "imges/projects_hq/ShoppingBags/ShoppingBags_5.jpg",
+          "imges/projects_hq/ShoppingBags/ShoppingBags_6.jpg",
+          "imges/projects_hq/ShoppingBags/ShoppingBags_7.jpg",
+          "imges/projects_hq/ShoppingBags/ShoppingBags_8.jpg"
+        ]
+      }
+    ],
+
+    materials:[
+
+      {
+        name:"Aluminum",
+        use:"Used for structural durability and a clean modern finish."
+      },
+
+      {
+        name:"Acrylic",
+        use:"Used for dimensional branded elements."
+      },
+
+      {
+        name:"LED",
+        use:"Used for illuminated signage and visibility."
+      }
+
+    ],
+
+    next:"Springfield",
+    nextId:"springfield"
+
+  },
+
+  springfield: {
+
+    number:"09",
+
+    title:"Springfield",
+
+    client:"Springfield",
+
+    location:"Cairo, Egypt",
+
+    service:"Store Setup",
+
+    year:"2026",
+
+    category:"Retail Display",
+
+    description:
+      "A retail store setup created to deliver a clear, welcoming and recognizable Springfield brand experience.",
+
+    images:[
+      "imges/spf1.jpeg",
+      "imges/spf2.jpeg",
+      "imges/spf3.jpeg",
+      "imges/spf4.jpeg",
+      "imges/spf5.jpeg"
+    ],
+
+    locations:[
+      {
+        name:"Springfield Store",
+        detail:"Full store setup — retail display and execution",
+        images:[
+          "imges/spf1.jpeg",
+          "imges/spf2.jpeg",
+          "imges/spf3.jpeg",
+          "imges/spf4.jpeg",
+          "imges/spf5.jpeg"
+        ]
+      }
+    ],
+
+    materials:[
+
+      {
+        name:"Acrylic",
+        use:"Used for clean dimensional brand details and display elements."
+      },
+
+      {
+        name:"Vinyl",
+        use:"Used for accurate graphic applications across branded surfaces."
+      },
+
+      {
+        name:"LED",
+        use:"Used to improve visibility across the store environment."
+      }
+
+    ],
+
+    next:"Lancôme",
+    nextId:"lancome"
+
+  }
+
+};
+
+
+
+/* =========================================
+   GET CURRENT PROJECT
+========================================= */
+
+const params = new URLSearchParams(window.location.search);
+
+const id = params.get("id") || "nike";
+
+const project = projects[id] || projects.nike;
+
+
+
+/* =========================================
+   BASIC INFORMATION
+========================================= */
+
+document.title = project.title + " | Art Vision";
+
+/* =========================================
+   GALLERY
+========================================= */
+
+const brandTitle = project.title;
+const brandInitials = brandTitle
+  .replace(/[^a-zA-ZÀ-ÿ0-9 ]/g, "")
+  .split(/\s+/)
+  .filter(Boolean)
+  .map(word => word[0])
+  .join("")
+  .slice(0, 3)
+  .toUpperCase();
+
+document.getElementById("brandMark").textContent = brandInitials;
+document.getElementById("brandProjectTitle").textContent = brandTitle;
+document.getElementById("brandProjectMeta").textContent =
+  `${project.category} · ${project.year} · Art Vision`;
+
+const storeGalleries = document.getElementById("storeGalleries");
+const galleryChunks = [];
+if(project.locations){
+ project.locations.forEach((location)=>{
+   galleryChunks.push({
+     name:location.name,
+     images:location.images
+   });
+ });
+} else {
+ galleryChunks.push({
+   name:project.location,
+   detail:`${project.service} — ${project.category}`,
+   images:project.images
+ });
+}
+document.getElementById("locationCount").textContent =
+ String(galleryChunks.length).padStart(2, "0");
+
+let galleryImageOffset = 0;
+galleryChunks.forEach((location, galleryIndex)=>{
+ const store = document.createElement("section");
+ store.className = "store-gallery";
+ const images = location.images;
+ const imageOffset = galleryImageOffset;
+ galleryImageOffset += images.length;
+ const visibleImages = images.slice(0, 2);
+
+ store.innerHTML = `
+   <div class="store-gallery-heading">
+     <h2>${location.name}</h2>
+     <p>${location.detail}</p>
+    </div>
+    <div class="store-gallery-grid">
+      ${visibleImages.map((image, imageIndex)=>`
+        <button class="store-image" type="button" data-image-index="${imageOffset + imageIndex}" aria-label="Open ${brandTitle} store image">
+          ${imageIndex === 0 && images.length > 2
+            ? `<span class="store-image-frame-count">${String(images.length).padStart(2, "0")} frames inside</span>`
+            : ""}
+          <img src="${image}" alt="${brandTitle} store ${galleryIndex + 1} image ${imageIndex + 1}" loading="lazy">
+        </button>
+      `).join("")}
+    </div>
+  `;
+  storeGalleries.appendChild(store);
+});
+
+const lightbox = document.getElementById("galleryLightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const lightboxCounter = document.getElementById("lightboxCounter");
+let activeImageIndex = 0;
+
+function showLightboxImage(index){
+  activeImageIndex = (index + project.images.length) % project.images.length;
+  lightboxImage.src = project.images[activeImageIndex];
+  lightboxImage.alt = `${project.title} project image ${activeImageIndex + 1}`;
+  lightboxCounter.textContent = `${activeImageIndex + 1} / ${project.images.length}`;
+}
+
+function openLightbox(index){
+  showLightboxImage(index);
+  lightbox.classList.add("is-open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox(){
+  lightbox.classList.remove("is-open");
+  document.body.style.overflow = "";
+}
+
+storeGalleries.querySelectorAll(".store-image").forEach((image)=>{
+  image.addEventListener("click", ()=>{
+    openLightbox(Number(image.dataset.imageIndex));
+  });
+});
+
+document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
+document.getElementById("lightboxPrev").addEventListener("click", ()=>{
+  showLightboxImage(activeImageIndex - 1);
+});
+document.getElementById("lightboxNext").addEventListener("click", ()=>{
+  showLightboxImage(activeImageIndex + 1);
+});
+lightbox.addEventListener("click", (event)=>{
+  if(event.target === lightbox) closeLightbox();
+});
+document.addEventListener("keydown", (event)=>{
+  if(!lightbox.classList.contains("is-open")) return;
+  if(event.key === "Escape") closeLightbox();
+  if(event.key === "ArrowLeft") showLightboxImage(activeImageIndex - 1);
+  if(event.key === "ArrowRight") showLightboxImage(activeImageIndex + 1);
+});
+
+
+
+</script>
+
+</body>
+</html>
